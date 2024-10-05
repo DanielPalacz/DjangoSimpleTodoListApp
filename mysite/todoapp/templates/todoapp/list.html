@@ -1,11 +1,11 @@
 {% extends "todoapp/base.html" %}
 
 {% block title %}
-Todoapp list details..
+Todoapp list details.
 {% endblock%}
 
 {% block content %}
-<h1>Viewing Todoapp list details:</h1>
+<u><h2>Todolist details:</h2></u>
 <ul>
     <li>id: '{{todolist_object.id}}'</li>
     <li>name: '{{todolist_object.name}}'</li>
@@ -13,15 +13,30 @@ Todoapp list details..
 </ul>
 
 
-<ul>
-    {% for item in todolist_object.todoitem_set.all %}
-        {% if item.complete == True %}
-            <li>{{item.text}} (COMPLETE) </li>
-        {% else %}
-                <li>{{item.text}} (INCOMPLETE) </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+<u><h2>Todolist items:</h2></u>
+
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-4">
+            <ul class="list-group">
+                {% for item in todolist_object.todoitem_set.all %}
+                    {% if item.complete == True %}
+                        <li class="list-group-item text-primary"><input type="checkbox" value="clicked" name="c{{item.id}}" checked> {{item.text}} (COMPLETE)</li>
+                    {% else %}
+                        <li class="list-group-item text-primary"><input type="checkbox" value="clicked" name="c{{item.id}}"> {{item.text}} (INCOMPLETE)</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit" name="update" value="update">Update items</button><br><br>
+    <div>
+        <input type="text" name="newValue"></input>
+        <button class="btn btn-outline-primary" type="submit" name="NewItem" value="NewItem">Add Item</button>
+    </div>
+</form>
+
 
 {% if not todolist_object.todoitem_set.all %}
 <h1>'{{todolist_object.name}}' is empty.</h1>

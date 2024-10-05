@@ -32,3 +32,7 @@
 
 
 ## 3. Learning Django template system
+
+## 4. Learning Django forms (basic example)
+
+## 5. Learning how to implement custom forms
