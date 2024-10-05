@@ -9,7 +9,7 @@
 ###### -----------------------------------------------------------------------------------------------------------
 ###### pip install django
 ###### django-admin startproject todoapp
-###### python manage.py startapp main (and registering app in settings.py)
+###### python manage.py startapp todoapp (and registering app in settings.py)
 ###### python manage.py makemigrations / python manage.py migrate
 ###### python manage.py createsuperuser
 
