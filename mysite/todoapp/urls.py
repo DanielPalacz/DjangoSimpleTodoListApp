@@ -7,4 +7,5 @@ app_name = "todoapp"
 urlpatterns = [
     path('<int:pk>/', views.todoapp_list, name="todoapp_list"),
     path('', views.home, name="home"),
+    path('create/', views.create, name="create"),
 ]
