@@ -5,10 +5,6 @@ app_name = "todoapp"
 
 
 urlpatterns = [
-    path('<int:pk>/', views.index, name="index"),
-
-    path('index_json/', views.index_json, name="index_json"),
-    path('v1/', views.v1, name="v1"),
-    path('v1_detail_int/<int:num>/', views.v1_detail_int, name="v1_detail_int"),
-    path('v1_detail_str/<str:variable>/', views.v1_detail_str, name="v1_detail_str"),
+    path('<int:pk>/', views.todoapp_list, name="todoapp_list"),
+    path('', views.home, name="home"),
 ]

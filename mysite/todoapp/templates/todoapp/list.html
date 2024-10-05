@@ -1,0 +1,31 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %}
+Todoapp list details..
+{% endblock%}
+
+{% block content %}
+<h1>Viewing Todoapp list details:</h1>
+<ul>
+    <li>id: '{{todolist_object.id}}'</li>
+    <li>name: '{{todolist_object.name}}'</li>
+    <li>endpoint: 'GET {{todolist_object.id}}/'</li>
+</ul>
+
+
+<ul>
+    {% for item in todolist_object.todoitem_set.all %}
+        {% if item.complete == True %}
+            <li>{{item.text}} (COMPLETE) </li>
+        {% else %}
+                <li>{{item.text}} (INCOMPLETE) </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% if not todolist_object.todoitem_set.all %}
+<h1>'{{todolist_object.name}}' is empty.</h1>
+{% endif %}
+
+
+{% endblock%}
