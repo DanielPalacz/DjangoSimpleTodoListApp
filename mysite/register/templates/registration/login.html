@@ -1,0 +1,44 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %}
+Login page.
+{% endblock%}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% if form.errors %}
+    <p>Error. Your username or password does not match.</p>
+    <p>You have not been successfully logged in. You can try <a href="/login/">log-in again.</a></p>
+{% else %}
+
+
+    {% if request.user.is_authenticated %}
+        <p>Logged as '{{request.user}}' user.</p>
+        <p>Do you want to log out?</p>
+        <form method="post" action="/logout/">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+
+
+    {% else %}
+
+
+    <u><p>Please log in:</p></u>
+
+    <div class="login-form">
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <p>Don't have an account? Create one <a href="/register/">here</a></p>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}

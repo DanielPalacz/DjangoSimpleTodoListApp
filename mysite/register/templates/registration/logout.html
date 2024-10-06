@@ -1,0 +1,22 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %}
+Log out page.
+{% endblock%}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+    {% if request.user.is_authenticated %}
+                <p>Logged as '{{request.user}}' user.</p>
+
+                <form method="post" action="/logout/">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+    {% else %}
+        <h1>Nobody is logged in</h1>
+        <p>You have been successfully logged out. You can <a href="/login/">log-in again.</a></p>
+    {% endif %}
+
+{% endblock %}

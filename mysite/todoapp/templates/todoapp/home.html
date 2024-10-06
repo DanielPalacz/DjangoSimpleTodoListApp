@@ -5,8 +5,13 @@ Todo app homepage.
 {% endblock%}
 
 {% block content %}
-    {% for todolist in todolists %}
+    {% for todolist in user.todolist.all %}
         <a href="/{{todolist.id}}/" target="_blank"><h4> - {{todolist.name}}</h4></a>
     {% endfor %}
+
+
+{% if not user.todolist.all %}
+    <h1>User '{{user}}' doesn't have any todolist.</h1>
+{% endif %}
 
 {% endblock%}

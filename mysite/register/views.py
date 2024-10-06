@@ -16,3 +16,6 @@ def register(request):
         form = RegisterForm()
 
     return render(request, "register/register.html", {"form": form})
+
+def logged_out(request):
+    return render(request, "registration/user_logged_out.html")

@@ -40,9 +40,12 @@ def create(request):
         form = CreateTodoListForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["name"]
+
             todolist = TodoList(name=name)
             todolist.save()
+            request.user.todolist.add(todolist)
             return HttpResponseRedirect(f"/{todolist.id}/")
+
     else:
         form = CreateTodoListForm()
     return render(request, "todoapp/create.html", {"form": form})
