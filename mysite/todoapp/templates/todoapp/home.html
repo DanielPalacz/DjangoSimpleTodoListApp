@@ -5,10 +5,8 @@ Todo app homepage.
 {% endblock%}
 
 {% block content %}
-
-<b><u><h1>All Todolist:</h1></u></b>
     {% for todolist in todolists %}
-    <a href="/{{todolist.id}}/" target="_blank"><h4> - {{todolist.name}}</h4></a>
+        <a href="/{{todolist.id}}/" target="_blank"><h4> - {{todolist.name}}</h4></a>
     {% endfor %}
 
 {% endblock%}

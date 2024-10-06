@@ -5,12 +5,14 @@ Creating new todo list.
 {% endblock%}
 
 {% block content %}
-<h1>Create New Todo list page.</h1>
+<h3>Create New Todolist page.</h3>
 <br>
 
-<form method="post" action="/create/">
+<form method="post" action="/create/" class="form-group">
     {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" name="create">Create New</button>
+    <div class="input-group mb-3">
+            <button class="btn btn-success" type="submit" name="create">Create New</button>
+            {{form.name}}
+    </div>
 </form>
 {% endblock%}

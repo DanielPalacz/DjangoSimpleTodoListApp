@@ -5,36 +5,38 @@ Todoapp list details.
 {% endblock%}
 
 {% block content %}
-<u><h2>Todolist details:</h2></u>
-<ul>
-    <li>id: '{{todolist_object.id}}'</li>
-    <li>name: '{{todolist_object.name}}'</li>
-    <li>endpoint: 'GET {{todolist_object.id}}/'</li>
-</ul>
+<u><h2>{{todolist_object.name}}</h2></u>
 
-
-<u><h2>Todolist items:</h2></u>
 
 <form method="post" action="#">
     {% csrf_token %}
     <div class="row">
         <div class="col-4">
-            <ul class="list-group">
                 {% for item in todolist_object.todoitem_set.all %}
-                    {% if item.complete == True %}
-                        <li class="list-group-item text-primary"><input type="checkbox" value="clicked" name="c{{item.id}}" checked> {{item.text}} (COMPLETE)</li>
-                    {% else %}
-                        <li class="list-group-item text-primary"><input type="checkbox" value="clicked" name="c{{item.id}}"> {{item.text}} (INCOMPLETE)</li>
-                    {% endif %}
+                <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            {% if item.complete == True %}
+                                <input type="checkbox" value="clicked" name="c{{item.id}}_complete" checked>
+                            {% else %}
+                                <input type="checkbox" value="clicked" name="c{{item.id}}_complete">
+                            {% endif %}
+                        </div>
+                    <input type="text" value="{{item.text}}" class="form-control" name="c{{item.id}}_text">
+                </div>
                 {% endfor %}
-            </ul>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit" name="update" value="update">Update items</button><br><br>
-    <div>
+
+
+  <button class="btn btn-primary" type="submit" name="update" value="update">Update items</button><br><br>
+
+  <div class="input-group mb-3">
+
+    <div class="input-group-prepend">
         <input type="text" name="newValue"></input>
         <button class="btn btn-outline-primary" type="submit" name="NewItem" value="NewItem">Add Item</button>
     </div>
+  </div>
 </form>
 
 

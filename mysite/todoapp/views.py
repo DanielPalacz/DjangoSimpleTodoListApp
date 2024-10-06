@@ -10,11 +10,12 @@ def todoapp_list(request, pk):
         print("request.POST:", request.POST)
         if request.POST.get("update"):
             for item in todolist_object.todoitem_set.all():
-                if request.POST.get("c" + str(item.id)) == "clicked":
+                if request.POST.get("c" + str(item.id) + "_complete") == "clicked":
                     item.complete = True
                 else:
                     item.complete = False
 
+                item.text = request.POST.get("c" + str(item.id) + "_text")
                 item.save()
 
         elif request.POST.get("NewItem"):

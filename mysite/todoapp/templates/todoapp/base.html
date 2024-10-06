@@ -12,7 +12,7 @@
 
       <style type="text/css">
           .main {
-            margin-left: 160px;
+            margin-left: 180px;
             padding: 0px 10px;
           }
 
@@ -24,9 +24,16 @@
 
   {% include "todoapp/sidebar.html" %}
 
+
     <div id="content" class="container main">
-        {% block content %}
-        {% endblock%}
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h1 class="mt-2">My site</h1>
+                <hr class="mt-0 mb-4">
+                {% block content %}
+                {% endblock%}
+            </div>
+        </div>
     </div>
 
 
